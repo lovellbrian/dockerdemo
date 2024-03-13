@@ -1,0 +1,1 @@
+# This is shell script containing the commands to build a container in GO
