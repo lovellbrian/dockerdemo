@@ -41,7 +41,7 @@ func child() {
 	fmt.Printf("running %v as %d\n", os.Args[2:], os.Getpid())
 
 	syscall.Sethostname([]byte("container"))
-	syscall.Chroot("/home/e3blovel/ubuntufs")
+	syscall.Chroot("/host-home-folder/ubuntu-fs")
 	syscall.Chdir("/")
 	
 	cmd := exec.Command(os.Args[2], os.Args[3:]...)

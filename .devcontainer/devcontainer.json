@@ -42,6 +42,9 @@
 			"dockerDashComposeVersion": "latest"
 		}
 	}
+	"mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE},target=/host-home-folder,type=bind,consistency=cached",
+    ]
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
