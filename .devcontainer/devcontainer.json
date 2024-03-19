@@ -31,6 +31,16 @@
 			"ms-vscode-remote.remote-containers"
 		  ]
 		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"moby": true,
+			"azureDnsAutoDetection": true,
+			"installDockerBuildx": true,
+			"installDockerComposeSwitch": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "latest"
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
