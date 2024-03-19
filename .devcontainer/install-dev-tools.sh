@@ -3,4 +3,4 @@
 # sudo apt-get autoremove -y
 # sudo apt-get clean
 sudo apt-get update
-sudo apt-get install golang-go   
+sudo apt-get install -y golang-go   
