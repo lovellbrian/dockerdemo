@@ -58,6 +58,3 @@ ls -l /proc/self
 ls /host-home-folder/ubuntu-fs
 
 #step6
-
-
-#step6
