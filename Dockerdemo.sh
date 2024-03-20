@@ -15,9 +15,18 @@ exit # in container
 
 # Show namespaces slide
 # Edit main.go
-# Step1
+
+# step1
 # Open bash terminal, detach
 sudo -i
 cd /workspaces/dockerdemo
 go run main.go run Hello ELEC4630
+# note - just typing string, not running echo command
 
+#step2
+go run main.go run echo Hello ELEC4630  #runs command
+go run main.go run /bin/bash
+ps
+# now to containerize
+
+#step3
