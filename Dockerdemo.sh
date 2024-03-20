@@ -19,5 +19,5 @@ exit # in container
 # Open bash terminal, detach
 sudo -i
 cd /workspaces/dockerdemo
-go run main.go run Hello ELEC4630
+go run main.go run echo Hello ELEC4630
 
