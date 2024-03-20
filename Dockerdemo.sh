@@ -2,9 +2,8 @@
 
 # Based on  https://www.youtube.com/watch?v=8fi7uSYlOdc
 # and       https://www.youtube.com/watch?v=Utf-A4rODH8
-# main (select main branch, then step1, step2 ...)
-# main (select main branch, then step1, step2 ...)
 
+# main (select main branch, then step1, step2 ...)
 # Show first 3 slides up to run docker
 
 docker run --rm -it ubuntu /bin/bash
