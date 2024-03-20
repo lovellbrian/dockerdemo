@@ -51,8 +51,7 @@ func child(){
 	
 	cmd.Run()
 
-	syscall.Sethostname([]byte("container"))
-}
+	}
 
 func must(err error) {
 	if err != nil {
