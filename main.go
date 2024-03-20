@@ -23,7 +23,7 @@ func main() {
 }
 
 func run(){
-	fmt.Printf("Running %v\n", os.Args[2:])
+	fmt.Printf("running %v as %d\n", os.Args[2:], os.Getpid())
 
 	cmd := exec.Command("/proc/self/exe", append([]string{"child"}, os.Args[2:]...)...)
 	cmd.Stdin = os.Stdin
@@ -38,7 +38,7 @@ func run(){
 }
 
 func child(){
-	fmt.Printf("Running %v\n", os.Args[2:])
+	fmt.Printf("running %v as %d\n", os.Args[2:], os.Getpid())
 	syscall.Sethostname([]byte("container"))
 
 	cmd := exec.Command(os.Args[2], os.Args[3:]...)
