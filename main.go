@@ -31,7 +31,8 @@ func run() {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags:   syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID, 
+		Cloneflags:   syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS,
+		Unshareflags: syscall.CLONE_NEWNS,
 	}
 	cmd.Run()
 
@@ -43,6 +44,7 @@ func child() {
 	syscall.Sethostname([]byte("container"))
 	syscall.Chroot("/host-home-folder/ubuntu-fs")
 	syscall.Chdir("/")
+	syscall.Mount("proc", "proc", "proc", 0, "")
 	
 	cmd := exec.Command(os.Args[2], os.Args[3:]...)
 	cmd.Stdin = os.Stdin
@@ -51,6 +53,7 @@ func child() {
 	
 	cmd.Run()
 
+	syscall.Unmount("/proc", 0)
 
 }
 
