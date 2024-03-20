@@ -58,3 +58,19 @@ ls -l /proc/self
 ls /host-home-folder/ubuntu-fs
 
 #step6
+go run main.go run /bin/bash
+ls /
+# Note ROOT_FOR_CONTAINER file
+# this is how docker mounts its images
+Sleep 100 #in container
+# examine on host
+ps -C sleep
+ls /proc/<pid>
+ls -l /proc/<pid>/root
+
+#in container
+ls /proc
+ps
+# need to mount /proc
+
+#step7
