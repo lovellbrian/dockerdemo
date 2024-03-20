@@ -18,7 +18,7 @@ exit # in container
 # create main.go
 go run main.go run echo "Hello ELEC4630"
 
-#E dit to make it run functions. Connect Stdout etc
+#Edit to make it run functions. Connect Stdout etc
 
 go run main.go run /bin/bash
 
