@@ -20,4 +20,4 @@ exit # in container
 sudo -i
 cd /workspaces/dockerdemo
 go run main.go run echo Hello ELEC4630
-
+# note - just typing string, not running echo command
