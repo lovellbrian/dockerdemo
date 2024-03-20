@@ -75,3 +75,4 @@ ps
 # /proc is a pseudo file system
 
 #step7
+ls /proc
