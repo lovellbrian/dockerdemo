@@ -37,3 +37,10 @@ hostname container # host unaffected
 # want to set this up before opening container
 
 #step4
+# need to set hostname.
+# Namespace is created with cmd.Run()
+# Can't change hostname after cmd.Run() as we will be changing the current namespace not the new one.
+# Can't do it before cmd.Run() as the namespace doesn't exist.
+# Use two processes!
+
+#step5

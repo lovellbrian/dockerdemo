@@ -31,6 +31,8 @@ func run(){
 		Cloneflags:   syscall.CLONE_NEWUTS,
 	}
 	cmd.Run()
+
+	syscall.Sethostname([]byte("container")) # this will not work
 }
 
 func must(err error) {
