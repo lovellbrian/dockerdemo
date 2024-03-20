@@ -3,6 +3,7 @@
 # Based on  https://www.youtube.com/watch?v=8fi7uSYlOdc
 # and       https://www.youtube.com/watch?v=Utf-A4rODH8
 
+# main (select main branch, then step1, step2 ...)
 # Show first 3 slides up to run docker
 
 docker run --rm -it ubuntu /bin/bash
@@ -13,14 +14,16 @@ ps  # in container
 ps  # in host
 exit # in container
 
-# Show namespaces slide
-# Edit main.go
+# Want to recreate 'docker run' in Go
+# show slide on namespaces - restricting the view
+# Create main.go adding func(run)
 
 # step1
 # Open bash terminal, detach
 sudo -i
 cd /workspaces/dockerdemo
-go run main.go run Hello ELEC4630
+
+go run main.go run echo Hello ELEC4630
 # note - just typing string, not running echo command
 
 #step2
