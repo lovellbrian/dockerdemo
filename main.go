@@ -43,6 +43,7 @@ func child(){
 	syscall.Sethostname([]byte("container"))
 	syscall.Chroot("/host-home-folder/ubuntu-fs")
 	syscall.Chdir("/")
+	syscall.Mount("proc", "proc", "proc", 0, "")
 
 	cmd := exec.Command(os.Args[2], os.Args[3:]...)
 	cmd.Stdin = os.Stdin
@@ -51,8 +52,9 @@ func child(){
 	
 	cmd.Run()
 
-	syscall.Sethostname([]byte("container"))
-}
+	syscall.Unmount("/proc", 0)
+
+	}
 
 func must(err error) {
 	if err != nil {
