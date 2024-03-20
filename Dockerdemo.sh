@@ -23,3 +23,34 @@ go run main.go run echo "Hello ELEC4630"
 go run main.go run /bin/bash
 
 # Now need to containerize
+
+ls -l /proc/self/exe
+ls -l /proc/self/  # multiple times
+
+sleep 100 # in container
+
+ps -C sleep # on host
+ls -l /proc/8941
+ls -l /proc/8941/root
+
+ls /proc # in container
+ps
+# get Error, do this: mount -t proc proc /proc
+
+# Run again
+ps
+mount
+
+sleep 100 # in container
+ps -C sleep # on host
+cat /proc/8029/mounts
+# get  /proc proc rw,relatime 0 0
+
+# cGroups to restrict resources
+
+cd /sys/fs/cgroup # on host
+ls
+cd memory
+cat memory.limit_in_bytes
+
+
