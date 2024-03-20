@@ -44,3 +44,20 @@ hostname container # host unaffected
 # Use two processes!
 
 #step5
+# add child process
+go run main.go run /bin/bash
+# two runs
+hostname
+# want pids starting from 1
+# ps gets information from /proc
+ps 
+ls /proc
+ls -l /proc/self/exe
+ls -l /proc/self
+# inside container need new root
+ls /host-home-folder/ubuntu-fs
+
+#step6
+
+
+#step6
