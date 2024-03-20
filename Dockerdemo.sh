@@ -72,5 +72,6 @@ ls -l /proc/<pid>/root
 ls /proc
 ps
 # need to mount /proc
+# /proc is a pseudo file system
 
 #step7
