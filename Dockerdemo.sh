@@ -30,3 +30,10 @@ ps
 # now to containerize
 
 #step3
+# now we can have different hostname in container
+go run main.go run /bin/bash
+hostname # inheirited from host
+hostname container # host unaffected
+# want to set this up before opening container
+
+#step4

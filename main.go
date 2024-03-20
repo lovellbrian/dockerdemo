@@ -1,8 +1,11 @@
 package main
 
-import "os"
-import "fmt"
-import "os/exec"
+import (
+	"fmt"
+	"os"
+	"os/exec"
+	"syscall"
+)
 
 // docker        run image <cmd> <params>
 // go run main.go          <cmd> <params>
@@ -24,7 +27,9 @@ func run(){
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
-
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		Cloneflags:   syscall.CLONE_NEWUTS,
+	}
 	cmd.Run()
 }
 
