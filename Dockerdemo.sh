@@ -76,3 +76,4 @@ ps
 
 #step7
 ls /proc
+ps
