@@ -16,13 +16,13 @@ func main() {
 		run()
 	case "child":
 		child()
-	
+
 	default:
 		panic("bad command")
 	}
 }
 
-func run(){
+func run() {
 	fmt.Printf("running %v as %d\n", os.Args[2:], os.Getpid())
 
 	cmd := exec.Command("/proc/self/exe", append([]string{"child"}, os.Args[2:]...)...)
@@ -31,17 +31,17 @@ func run(){
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags:   syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID,
+		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID,
 	}
 	cmd.Run()
 
 }
 
-func child(){
+func child() {
 	fmt.Printf("running %v as %d\n", os.Args[2:], os.Getpid())
 
 	syscall.Sethostname([]byte("container"))
-	syscall.Chroot("/host-home-folder/ubuntu-fs")
+	syscall.Chroot("/home/vscode/ubuntu-fs")
 	syscall.Chdir("/")
 	syscall.Mount("proc", "proc", "proc", 0, "")
 
@@ -49,12 +49,12 @@ func child(){
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
-	
+
 	cmd.Run()
 
 	syscall.Unmount("/proc", 0)
 
-	}
+}
 
 func must(err error) {
 	if err != nil {
