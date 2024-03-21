@@ -14,13 +14,13 @@ func main() {
 	switch os.Args[1] {
 	case "run":
 		run()
-	
+
 	default:
 		panic("bad command")
 	}
 }
 
-func run(){
+func run() {
 	fmt.Printf("Running %v\n", os.Args[2:])
 
 	cmd := exec.Command(os.Args[2], os.Args[3:]...)
@@ -28,7 +28,7 @@ func run(){
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags:   syscall.CLONE_NEWUTS,
+		Cloneflags: syscall.CLONE_NEWUTS,
 	}
 	cmd.Run()
 }
