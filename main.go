@@ -32,7 +32,7 @@ func run(){
 	}
 	cmd.Run()
 
-	syscall.Sethostname([]byte("container")) # this will not work
+	syscall.Sethostname([]byte("container")) // this will not work
 }
 
 func must(err error) {
