@@ -36,7 +36,7 @@ ps
 # now we can have different hostname in container
 
 # Show hostname in prompt
-export PS1="[\u@\h \W]\$"
+export PS1="[\u@\h \W]\$ "
 
 go run main.go run /bin/bash
 hostname # inheirited from host
