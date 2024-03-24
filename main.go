@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
+	"path/filepath"
+	"strconv"
 	"syscall"
 )
 
@@ -31,7 +34,7 @@ func run() {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS,
+		Cloneflags:   syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS,
 		Unshareflags: syscall.CLONE_NEWNS,
 	}
 	cmd.Run()
@@ -40,6 +43,8 @@ func run() {
 
 func child() {
 	fmt.Printf("running %v as %d\n", os.Args[2:], os.Getpid())
+
+	cg()
 
 	syscall.Sethostname([]byte("container"))
 	syscall.Chroot("/home/vscode/ubuntu-fs")
@@ -55,6 +60,16 @@ func child() {
 
 	syscall.Unmount("/proc", 0)
 
+}
+
+func cg() {
+	cgroups := "/sys/fs/cgroup/"
+	pids := filepath.Join(cgroups, "pids")
+	os.Mkdir(filepath.Join(pids, "brian"), 0755)
+	must(ioutil.WriteFile(filepath.Join(pids, "brian/pids.max"), []byte("20"), 0700))
+	// Removes the new cgroup in place after the container exits
+	must(ioutil.WriteFile(filepath.Join(pids, "brian/notify_on_release"), []byte("1"), 0700))
+	must(ioutil.WriteFile(filepath.Join(pids, "brian/cgroup.procs"), []byte(strconv.Itoa(os.Getpid())), 0700))
 }
 
 func must(err error) {
