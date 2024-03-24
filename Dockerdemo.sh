@@ -181,4 +181,47 @@ cat <container number>/memory.limit_in_bytes
 
 #step9
 
+cd /sys/fs/cgroup
+ls
+cd pids
+ls
 
+cat docker/pids.max
+# max
+# there is no limit
+
+# Edit code
+
+# in container
+go run main.go run /bin/bash
+
+# in host
+
+cd /sys/fs/cgroup/pids
+# now there is a brian folder
+cd brian
+cat pids.max
+# 20
+
+# in container 
+sleep 100
+
+# in host
+ps -c sleep
+
+cat cgroup.proc
+# last process is sleep. parents above. 
+
+# in host
+# define a function colon
+:0
+# in that function we call colon, which we pipe into colon, which we run in the background.  
+# That is the definition of our function, and then we invoke it in the container.
+:() { : | : &}; :
+
+# in the host
+ps fax
+# running nicely, good response, lots of bash sessions
+
+cd /sys/fs/cgroup/brian
+cat pids.current
