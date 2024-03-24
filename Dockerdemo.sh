@@ -209,9 +209,9 @@ cat pids.max
 sleep 100
 
 # in host
-ps -c sleep
+ps -C sleep
 
-cat cgroup.proc
+cat cgroup.procs
 # last process is sleep. parents above. 
 
 # in host
@@ -220,7 +220,7 @@ cat cgroup.proc
 # in that function we call colon, which we pipe into colon, which we run in the background.  
 # That is the definition of our function, and then we invoke it in the container.
 :() { : | : &}; :
-# This is a FORK BOMB which destroys machines!
+# This is a FORK BOMB which destroys machines! Forks forever. 
 
 # in the host
 ps fax
@@ -230,4 +230,11 @@ cd /sys/fs/cgroup/brian
 cat pids.current
 # 20
 
+cat cgroup.procs
 
+# We have seen how a container is created with namespaces
+# and is limited by control groups. 
+# We have seen how the filesystem works, or docker images work, by pointing
+# to a subset of the host filesystem with chroot. 
+# We have seen how to bring the machine down with
+# a FORK BOMB. (don't do this at home unless you have a Control Group)
