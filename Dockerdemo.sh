@@ -61,8 +61,24 @@ ps
 ls /proc
 ls -l /proc/self/exe
 ls -l /proc/self
-# inside container need new root
-ls /host-home-folder/ubuntu-fs
+
+# Let's create chroot folder
+
+# Mark host root with file
+touch /ROOT_FOR_HOST
+ls /
+
+# Use debootstrap to fetch minimal linux
+mkdir -p /home/vscode/ubuntu-fs
+apt-get update 
+apt-get install debootstrap
+debootstrap --variant=minbase focal /home/vscode/ubuntu-fs/
+
+# Mark container root with file
+touch /home/vscode/ubuntu-fs/ROOT_FOR_CONTAINER
+ls /home/vscode/ubuntu-fs
+
+# Now we have a new root folder for the container
 
 #step6
 go run main.go run /bin/bash
@@ -82,6 +98,7 @@ ps
 # /proc is a pseudo file system
 
 #step7
+
 ls /proc
 ps
 
