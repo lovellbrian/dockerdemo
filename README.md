@@ -1,2 +1,1 @@
-# dockerdemo
-Demonstrate how Docker works
+docs/toplevelREADME.md
