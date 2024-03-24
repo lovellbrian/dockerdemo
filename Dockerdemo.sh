@@ -177,10 +177,6 @@ ls /sys/fs/cgroup/memory/docker
 cat <container number>/memory.limit_in_bytes
 # now only 10M
 
-# We are going to do the same king of thing for process numbers
-
-#step9
-
 cd /sys/fs/cgroup
 ls
 cd pids
@@ -190,7 +186,13 @@ cat docker/pids.max
 # max
 # there is no limit
 
+# We are going to do the same king of thing for process numbers
 # Edit code
+#step9
+
+# So this code goes into the cgroup/pids folder, creates a folder brian
+# Sets pids.max
+# Adds current process to this control group
 
 # in container
 go run main.go run /bin/bash
@@ -218,6 +220,7 @@ cat cgroup.proc
 # in that function we call colon, which we pipe into colon, which we run in the background.  
 # That is the definition of our function, and then we invoke it in the container.
 :() { : | : &}; :
+# This is a FORK BOMB which destroys machines!
 
 # in the host
 ps fax
@@ -225,3 +228,6 @@ ps fax
 
 cd /sys/fs/cgroup/brian
 cat pids.current
+# 20
+
+
