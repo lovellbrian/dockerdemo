@@ -108,7 +108,7 @@ ls /proc
 ps
 # ps finally works
 
-# in countainer
+# in container
 mount 
 # we see proc mount only
 
@@ -121,3 +121,64 @@ mount | grep proc
 
 # There is a namespace for mounts
 # Edit main.go
+
+# in container
+mount 
+# we see proc mount only
+
+# in host
+mount | grep proc
+# we see host mount only
+
+# this effectively hides container mounts
+# can examine on host via proc table
+
+Sleep 100 # in container
+# examine on host
+ps -C sleep
+cat /proc/<pid>/mounts
+
+# Show Namespaces Slide
+# We have shown how to handle Unix Timesharing System, Process IDs, Mounts
+# Can also handle Network, UserIDs, and Interprocess Communication in much the same way.
+
+# Also saw how chroot works to isolate filesystem
+# One last property to show
+# Show CGroups slide
+
+# Namespaces limit what you can see. CGroups limit what you can do. 
+
+# on host
+
+cd /sys/fs/cgroup
+ls
+
+cd memory
+ls
+
+cat memory.limit_in_bytes
+# very big number
+
+# Create a docker control group
+docker run --rm -it ubuntu /bin/bash
+exit
+
+cd docker
+
+cat memory.limit_in_bytes
+# very big number again
+
+docker run --rm -it --memory=10M ubuntu /bin/bash
+
+# in host, look for container number in /sys/fs/cgroup/memory/docker
+
+ls /sys/fs/cgroup/memory/docker
+
+cat <container number>/memory.limit_in_bytes
+# now only 10M
+
+# We are going to do the same king of thing for process numbers
+
+#step9
+
+
