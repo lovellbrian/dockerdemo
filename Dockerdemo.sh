@@ -85,11 +85,6 @@ go run main.go run /bin/bash
 ls /
 # Note ROOT_FOR_CONTAINER file
 # this is how docker mounts its images
-Sleep 100 #in container
-# examine on host
-ps -C sleep
-ls /proc/<pid>
-ls -l /proc/<pid>/root
 
 #in container
 ls /proc
@@ -97,9 +92,32 @@ ps
 # need to mount /proc
 # /proc is a pseudo file system
 
+Sleep 100 #in container
+# examine on host
+ps -C sleep
+ls /proc/<pid>
+ls -l /proc/<pid>/root
+# note the root for Sleep is the CONTAINER ROOT
+
+# Now to fix proc mount
+
 #step7
 
+# in container
 ls /proc
 ps
+# ps finally works
+
+# in countainer
+mount 
+# we see proc mount only
+
+# in host
+mount | grep proc
+# we see host and container mounts
+# not very secure or convenient for host to see all container mounts
 
 #step8
+
+# There is a namespace for mounts
+# Edit main.go
