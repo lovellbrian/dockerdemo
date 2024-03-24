@@ -34,6 +34,10 @@ ps
 
 #step3
 # now we can have different hostname in container
+
+# Show hostname in prompt
+export PS1="[\u@\h \W]\$ "
+
 go run main.go run /bin/bash
 hostname # inheirited from host
 hostname container # host unaffected
@@ -57,19 +61,30 @@ ps
 ls /proc
 ls -l /proc/self/exe
 ls -l /proc/self
-# inside container need new root
-ls /host-home-folder/ubuntu-fs
+
+# Let's create chroot folder
+
+# Mark host root with file
+touch /ROOT_FOR_HOST
+ls /
+
+# Use debootstrap to fetch minimal linux
+mkdir -p /home/vscode/ubuntu-fs
+apt-get update 
+apt-get install debootstrap
+debootstrap --variant=minbase focal /home/vscode/ubuntu-fs/
+
+# Mark container root with file
+touch /home/vscode/ubuntu-fs/ROOT_FOR_CONTAINER
+ls /home/vscode/ubuntu-fs
+
+# Now we have a new root folder for the container
 
 #step6
 go run main.go run /bin/bash
 ls /
 # Note ROOT_FOR_CONTAINER file
 # this is how docker mounts its images
-Sleep 100 #in container
-# examine on host
-ps -C sleep
-ls /proc/<pid>
-ls -l /proc/<pid>/root
 
 #in container
 ls /proc
@@ -77,6 +92,29 @@ ps
 # need to mount /proc
 # /proc is a pseudo file system
 
+Sleep 100 #in container
+# examine on host
+ps -C sleep
+ls /proc/<pid>
+ls -l /proc/<pid>/root
+# note the root for Sleep is the CONTAINER ROOT
+
+# Now to fix proc mount
+
 #step7
+
+# in container
 ls /proc
 ps
+# ps finally works
+
+# in countainer
+mount 
+# we see proc mount only
+
+# in host
+mount | grep proc
+# we see host and container mounts
+# not very secure or convenient for host to see all container mounts
+
+#step8
