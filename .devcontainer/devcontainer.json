@@ -32,16 +32,16 @@
 		  ]
 		}
 	},
-	// "features": {
-	// 	"ghcr.io/devcontainers/features/docker-in-docker:4.0.0": {
-	// 		"moby": true,
-	// 		"azureDnsAutoDetection": true,
-	// 		"installDockerBuildx": true,
-	// 		"installDockerComposeSwitch": true,
-	// 		"version": "latest",
-	// 		"dockerDashComposeVersion": "latest"
-	// 	}
-	// }
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:4.0.0": {
+			"moby": true,
+			"azureDnsAutoDetection": true,
+			"installDockerBuildx": true,
+			"installDockerComposeSwitch": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "latest"
+		}
+	}
 	"mounts": [
         "source=${localEnv:HOME}${localEnv:USERPROFILE},target=/host-home-folder,type=bind,consistency=cached"
     ]
