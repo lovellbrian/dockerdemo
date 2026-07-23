@@ -92,7 +92,7 @@ ps
 # need to mount /proc
 # /proc is a pseudo file system
 
-Sleep 100 #in container
+sleep 100 #in container
 # examine on host
 ps -C sleep
 ls /proc/<pid>
