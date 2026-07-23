@@ -122,6 +122,8 @@ mount | grep proc
 # There is a namespace for mounts
 # Edit main.go
 
+go run main.go run /bin/bash
+
 # in container
 mount 
 # we see proc mount only
