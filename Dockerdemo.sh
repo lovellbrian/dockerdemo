@@ -57,6 +57,8 @@ go run main.go run /bin/bash
 hostname
 # want pids starting from 1
 # ps gets information from /proc
+
+ps fax
 ps 
 ls /proc
 ls -l /proc/self/exe
