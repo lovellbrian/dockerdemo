@@ -74,7 +74,7 @@ ls /
 mkdir -p /home/vscode/ubuntu-fs
 apt-get update 
 apt-get install debootstrap
-debootstrap --variant=minbase bullseye /home/vscode/ubuntu-fs/
+debootstrap --variant=minbase focal /home/vscode/ubuntu-fs/
 
 # Mark container root with file
 touch /home/vscode/ubuntu-fs/ROOT_FOR_CONTAINER
