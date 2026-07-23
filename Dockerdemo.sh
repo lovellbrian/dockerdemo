@@ -103,12 +103,13 @@ ls -l /proc/<pid>/root
 
 #step7
 
+go run main.go run /bin/bash
 # in container
 ls /proc
 ps
 # ps finally works
 
-# in countainer
+# in container
 mount 
 # we see proc mount only
 
