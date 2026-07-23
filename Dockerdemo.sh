@@ -133,7 +133,7 @@ mount | grep proc
 # this effectively hides container mounts
 # can examine on host via proc table
 
-Sleep 100 # in container
+sleep 100 # in container
 # examine on host
 ps -C sleep
 cat /proc/<pid>/mounts
