@@ -188,6 +188,6 @@ cat docker/pids.max
 # max
 # there is no limit
 
-# We are going to do the same king of thing for process numbers
+# We are going to do the same kind of thing for process numbers
 # Edit code
 #step9
